@@ -63,13 +63,13 @@ app.delete("/tracks", (req, res) => {
     res.send(JSON.stringify({ "type": "error", "output": "no se ha provisto un elemento de bsuqueda " }) + "\n");
   }
 });
-
+/*
 app.patch("/tracks", (req, res) => {
   
 });
-
+*/
 //----------------------------------------------------------
-
+/*
 app.get("/challenges", (req, res) => {})
 
 app.post("/challenges", (req, res) => {})
@@ -77,9 +77,9 @@ app.post("/challenges", (req, res) => {})
 app.delete("/challenges", (req, res) => {})
 
 app.patch("/challenges", (req, res) => {})
-
+*/
 //----------------------------------------------------------
-
+/*
 app.get("/groups", (req, res) => {})
 
 app.post("/groups", (req, res) => {})
@@ -87,9 +87,9 @@ app.post("/groups", (req, res) => {})
 app.delete("/groups", (req, res) => {})
 
 app.patch("/groups", (req, res) => {})
-
+*/
 //----------------------------------------------------------
-
+/*
 app.get("/users", (req, res) => {})
 
 app.post("/users", (req, res) => {})
@@ -97,6 +97,6 @@ app.post("/users", (req, res) => {})
 app.delete("/users", (req, res) => {})
 
 app.patch("/users", (req, res) => {})
-
+*/
 //----------------------------------------------------------
 
