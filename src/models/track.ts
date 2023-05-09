@@ -5,6 +5,7 @@ const TrackSchema = new Schema<Track>({
     id: {
         type: Number,
         required: true,
+        unique: true,
         validate(value: number) {
             if (value < 0) {
                 throw new Error('Track ID must be greater than 0');
@@ -14,6 +15,7 @@ const TrackSchema = new Schema<Track>({
     name: {
         type: String,
         required: true,
+        trim: true
     },
     start: {
         lat: {
@@ -27,8 +29,7 @@ const TrackSchema = new Schema<Track>({
         alt: {
             type: Number,
             required: true,
-        },
-        required: true,
+        }
     },
     end: {
         lat: {
@@ -42,12 +43,10 @@ const TrackSchema = new Schema<Track>({
         alt: {
             type: Number,
             required: true,
-        },
-        required: true,
+        }
     },
     long: {
         type: Number,
-        required: true,
         validate(value: number) {
             if (value < 0) {
               throw new Error('Track length must be greater than 0');
@@ -72,6 +71,7 @@ const TrackSchema = new Schema<Track>({
     type: {
         type: String,
         required: true,
+        trim: true
     },
     puntuation: {
         type: Number,

@@ -5,6 +5,7 @@ const UserSchema = new Schema<User>({
     id: {
         type: Number,
         required: true,
+        unique: true,
         validate(value: number) {
             if (value < 0) {
                 throw new Error('Track ID must be greater than 0');
@@ -14,10 +15,12 @@ const UserSchema = new Schema<User>({
     name: {
         type: String,
         required: true,
+        trim: true
     },
     activity: {
         type: String,
         required: true,
+        trim: true
     },
     friends: [
         {

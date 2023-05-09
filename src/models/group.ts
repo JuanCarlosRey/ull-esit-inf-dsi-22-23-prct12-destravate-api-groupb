@@ -5,6 +5,7 @@ const GroupSchema = new Schema<Group>({
     id: {
         type: Number,
         required: true,
+        unique: true,
         validate(value: number) {
             if (value < 0) {
                 throw new Error('Track ID must be greater than 0');
@@ -14,6 +15,7 @@ const GroupSchema = new Schema<Group>({
     name: {
         type: String,
         required: true,
+        trim: true
     },
     members: [
         {
@@ -71,4 +73,4 @@ const GroupSchema = new Schema<Group>({
     }
 });
 
-export const GroupModel = model<Group>('User', GroupSchema);
+export const GroupModel = model<Group>('Group', GroupSchema);

@@ -5,6 +5,7 @@ const ChallengeSchema = new Schema<Challenge>({
     id: {
         type: Number,
         required: true,
+        unique: true,
         validate(value: number) {
             if (value < 0) {
                 throw new Error('Track ID must be greater than 0');
@@ -14,6 +15,7 @@ const ChallengeSchema = new Schema<Challenge>({
     name: {
         type: String,
         required: true,
+        trim: true
     },
     tracks: [
         {
@@ -24,6 +26,7 @@ const ChallengeSchema = new Schema<Challenge>({
     type: {
         type: String,
         required: true,
+        trim: true
     },
     long: {
         type: Number,
