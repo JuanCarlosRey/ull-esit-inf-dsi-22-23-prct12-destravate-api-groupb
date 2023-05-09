@@ -1,18 +1,17 @@
-import { Track } from "../track/track.js";
-import { TYPE } from "../track/track.js";
+import { Type } from "./track.js";
 
-export class challenge {
+export class Challenge {
   private _id: number;
   private _name: string;
-  private _tasks: Track[];
-  private _type: TYPE;
+  private _tracks: number[];
+  private _type: Type;
   private _long: number;
   private _users: string[];
 
-  constructor(id: number, name: string, tasks: Track[], type: TYPE, long: number, users: string[]) {  
+  constructor(id: number, name: string, tracks: number[], type: Type, long: number, users: string[]) {  
     this._id = id;
     this._name = name;
-    this._tasks = tasks;
+    this._tracks = tracks;
     this._type = type;
     this._long = long;
     this._users = users;
@@ -22,44 +21,44 @@ export class challenge {
     return this._id;
   }
 
-  get name() {
-    return this._name;
-  }
-
-  get tasks() {
-    return this._tasks;
-  }
-
-  get type() {
-    return this._type;
-  }
-
-  get long() {
-    return this._long;
-  }
-
-  get users() {
-    return this._users;
-  }
-
   set id(id: number) {
     this._id = id;
+  }
+
+  get name() {
+    return this._name;
   }
 
   set name(name: string) {
     this._name = name;
   }
 
-  set tasks(tasks: Track[]) {
-    this._tasks = tasks;
+  get tracks() {
+    return this._tracks;
   }
 
-  set type(type: TYPE) {
+  set tracks(tracks: number[]) {
+    this._tracks = tracks;
+  }
+
+  get type() {
+    return this._type;
+  }
+
+  set type(type: Type) {
     this._type = type;
+  }
+
+  get long() {
+    return this._long;
   }
 
   set long(long: number) {
     this._long = long;
+  }
+
+  get users() {
+    return this._users;
   }
 
   set users(users: string[]) {

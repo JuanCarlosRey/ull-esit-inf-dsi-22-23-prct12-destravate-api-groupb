@@ -1,5 +1,5 @@
 import { MongoClient } from "mongodb";
-import { Track, TYPE, coordenadas } from "./track/track.js";
+import { Track, Type, Coordinates } from "./classes/track.js";
 import express from "express";
 
 const app = express();
@@ -63,11 +63,11 @@ app.delete("/tracks", (req, res) => {
     res.send(JSON.stringify({ "type": "error", "output": "no se ha provisto un elemento de bsuqueda " }) + "\n");
   }
 });
-/*
+
 app.patch("/tracks", (req, res) => {
-  
+  // Código
 });
-*/
+
 //----------------------------------------------------------
 /*
 app.get("/challenges", (req, res) => {})
@@ -100,3 +100,6 @@ app.patch("/users", (req, res) => {})
 */
 //----------------------------------------------------------
 
+app.listen(3000, () => {
+    console.log('Server is up on port 3000');
+});
