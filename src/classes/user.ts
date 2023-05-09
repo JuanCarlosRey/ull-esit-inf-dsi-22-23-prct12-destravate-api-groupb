@@ -22,20 +22,20 @@ export type Record = { // Historial
 export class User {
   private _id: number;
   private _name: string;
-  private _activity: Type
-  private _friends: number[]
-  private _grupos: number[]
+  private _activity: Type;
+  private _friends: number[];
+  private _groups: number[];
   private _stadicitics: Statistics;
-  private _favorite_tracks: number[]
-  private _challenges: number[]
-  private _history: number[]
+  private _favorite_tracks: number[];
+  private _challenges: number[];
+  private _history: Record;
 
-  constructor( id: number, name: string, activity: Type, friends: number[], grupos: number[], stadicitics: Statistics, favorite_tracks: number[], challenges: number[], history: number[]) {
+  constructor( id: number, name: string, activity: Type, friends: number[], groups: number[], stadicitics: Statistics, favorite_tracks: number[], challenges: number[], history: Record) {
     this._id = id;
     this._name = name;
     this._activity = activity;
     this._friends = friends;
-    this._grupos = grupos;
+    this._groups = groups;
     this._stadicitics = stadicitics;
     this._favorite_tracks = favorite_tracks;
     this._challenges = challenges;
@@ -74,12 +74,12 @@ export class User {
     this._friends = friends;
   }
 
-  get grupos() {
-    return this._grupos;
+  get groups() {
+    return this._groups;
   }
 
-  set grupos(grupos: number[]) {
-    this._grupos = grupos;
+  set groups(groups: number[]) {
+    this._groups = groups;
   }
 
   get stadicitics() {
@@ -110,7 +110,7 @@ export class User {
     return this._history;
   }
 
-  set history(history: number[]) {
+  set history(history: Record) {
     this._history = history;
   }
   

@@ -1,4 +1,5 @@
 import { Statistics } from "./user.js";
+import { Record } from "./user.js";
 
 export class Group {
   private _id: number;
@@ -7,9 +8,9 @@ export class Group {
   private _global_stadistics: Statistics;
   private _ranking: number[]; //orden por cantidad de km o por desnivel.
   private _favorite_tracks: number[];
-  private _group_history: number[];
+  private _group_history: Record;
 
-  constructor(id: number, name: string, members: number[], global_stadistics: Statistics, ranking: number[], favorite_tracks: number[], group_history: number[]) {
+  constructor(id: number, name: string, members: number[], global_stadistics: Statistics, ranking: number[], favorite_tracks: number[], group_history: Record) {
     this._id = id;
     this._name = name;
     this._members = members;
@@ -71,7 +72,7 @@ export class Group {
     return this._group_history;
   }
 
-  set group_history(group_history: number[]) {
+  set group_history(group_history: Record) {
     this._group_history = group_history;
   }
 }
