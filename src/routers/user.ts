@@ -18,10 +18,22 @@ userRouter.get('/users', async (req, res) => {
     // Código
 });
 
+userRouter.get('/users/:id', async (req, res) => {
+    // Código
+});
+
 userRouter.patch('/users', async (req, res) => {
     // Código
 });
 
+userRouter.patch('/users/:id', async (req, res) => {
+    // Código
+});
+
 userRouter.delete('/users', async (req, res) => {
+    // Código
+});
+
+userRouter.delete('/users/:id', async (req, res) => {
     // Código
 });

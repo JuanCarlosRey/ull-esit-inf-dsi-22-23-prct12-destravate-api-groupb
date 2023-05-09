@@ -18,10 +18,22 @@ groupRouter.get('/groups', async (req, res) => {
     // Código
 });
 
+groupRouter.get('/groups/:id', async (req, res) => {
+    // Código
+});
+
 groupRouter.patch('/groups', async (req, res) => {
     // Código
 });
 
+groupRouter.patch('/groups/:id', async (req, res) => {
+    // Código
+});
+
 groupRouter.delete('/groups', async (req, res) => {
+    // Código
+});
+
+groupRouter.delete('/groups/:id', async (req, res) => {
     // Código
 });

@@ -18,10 +18,22 @@ trackRouter.get('/tracks', async (req, res) => {
     // Código
 });
 
+trackRouter.get('/tracks/:id', async (req, res) => {
+    // Código
+});
+
 trackRouter.patch('/tracks', async (req, res) => {
     // Código
 });
 
+trackRouter.patch('/tracks/:id', async (req, res) => {
+    // Código
+});
+
 trackRouter.delete('/tracks', async (req, res) => {
+    // Código
+});
+
+trackRouter.delete('/tracks/:id', async (req, res) => {
     // Código
 });

@@ -18,10 +18,22 @@ challengeRouter.get('/challenges', async (req, res) => {
     // Código
 });
 
+challengeRouter.get('/challenges/:id', async (req, res) => {
+    // Código
+});
+
 challengeRouter.patch('/challenges', async (req, res) => {
     // Código
 });
 
+challengeRouter.patch('/challenges/:id', async (req, res) => {
+    // Código
+});
+
 challengeRouter.delete('/challenges', async (req, res) => {
+    // Código
+});
+
+challengeRouter.delete('/challenges/:id', async (req, res) => {
     // Código
 });
