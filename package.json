@@ -5,9 +5,10 @@
   "main": "basicFunctions.js",
   "type": "module",
   "scripts": {
+    "build": "tsc",
     "start": "tsc-watch --onSuccess \"node dist/main.js\"",
     "doc": "typedoc",
-    "test": "mocha",
+    "test": "mocha --exit",
     "coverage": "c8 npm test && c8 report --reporter=lcov"
   },
   "keywords": [],
