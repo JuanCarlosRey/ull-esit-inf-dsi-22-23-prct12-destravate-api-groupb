@@ -59,3 +59,13 @@ export const ChallengeModel = model<ChallengeDocument>(
   "Challenge",
   ChallengeSchema
 );
+
+//example of a challenge
+// {
+//   "id": 1,
+//   "name": "Challenge 1",
+//   "tracks": [1, 2, 3],
+//   "type": "challenge",
+//   "long": 100,
+//   "users": [1, 2, 3]
+// }

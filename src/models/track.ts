@@ -120,3 +120,25 @@ const TrackSchema = new Schema<TrackDocument>({
 });
 
 export const TrackModel = model<TrackDocument>("Track", TrackSchema);
+
+
+// example of a track
+// {
+//   "id": 1,
+//   "name": "Track 1",
+//   "start": {
+//     "lat": 28.123,
+//     "long": 16.123,
+//     "alt": 123
+//   },
+//   "end": {
+//     "lat": 28.123,
+//     "long": 16.123,
+//     "alt": 123
+//   },
+//   "long": 123,
+//   "grade": 123,
+//   "users": [1, 2, 3],
+//   "type": "running",
+//   "puntuation": 4
+// }

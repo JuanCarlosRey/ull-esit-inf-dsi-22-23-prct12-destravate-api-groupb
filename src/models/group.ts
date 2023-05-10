@@ -130,3 +130,31 @@ const GroupSchema = new Schema<GroupDocument>({
 });
 
 export const GroupModel = model<GroupDocument>("Group", GroupSchema);
+
+
+//example of a group
+// {
+//   "id": 1,
+//   "name": "Grupo 1",
+//   "members": [1, 2, 3, 4, 5],
+//   "global_stadistics": {
+//     "_weekly_distance": 123,
+//     "_weekly_deviation": 123,
+//     "_monthly_distance": 123,
+//     "_monthly_deviation": 123,
+//     "_annual_distance": 123,
+//     "_annual_deviation": 123
+//   },
+//   "ranking": [1, 2, 3, 4, 5],
+//   "favorite_tracks": [1, 2, 3, 4, 5],
+//   "group_history": [
+//     {
+//       "_id": 1,
+//       "_date": "2021-10-10"
+//     },
+//     {
+//       "_id": 2,
+//       "_date": "2021-10-10"
+//     },
+//   ]
+// }

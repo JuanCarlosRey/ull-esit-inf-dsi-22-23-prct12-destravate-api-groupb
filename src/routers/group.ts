@@ -43,11 +43,63 @@ groupRouter.get("/groups/:id", async (req, res) => {
 });
 
 groupRouter.patch("/groups", async (req, res) => {
-  // Código
+  if (!req.query.name) {
+    return res.status(400).send({ error: "No name provided" });
+  }
+
+  const allowedUpdates = Object.keys(req.body);
+  const actualUpdates = [
+    "id",
+    "name",
+    "members",
+    "global_stadistics",
+    "ranking",
+    "favorite_tracks",
+    "group_history"
+  ];
+
+  const isValidOperation = actualUpdates.every((update) =>
+    allowedUpdates.includes(update)
+  );
+
+  if (!isValidOperation) {
+    return res.status(400).send({ error: "Invalid updates" });
+  }
+
+  try{
+    const group = await GroupModel.findOneAndUpdate(
+      { name: req.query.name.toString() },
+      req.body,
+      { new: true,
+      runValidators: true}
+    );
+
+    if(group) {
+      return res.send(group);
+    }
+    return res.status(404).send();
+
+  } catch(error) {
+    return res.status(500).send(error)
+  }
 });
 
 groupRouter.patch("/groups/:id", async (req, res) => {
-  // Código
+  try{
+    const group = await GroupModel.findOneAndUpdate(
+      { id: req.params.id },
+      req.body,
+      { new: true,
+      runValidators: true}
+    );
+
+    if(group) {
+      return res.send(group);
+    }
+    return res.status(404).send();
+  } catch(error) {
+    return res.status(500).send(error)
+  }
 });
 
 groupRouter.delete("/groups", async (req, res) => {

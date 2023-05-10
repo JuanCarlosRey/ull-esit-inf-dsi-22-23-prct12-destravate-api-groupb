@@ -43,11 +43,68 @@ trackRouter.get("/tracks/:id", async (req, res) => {
 });
 
 trackRouter.patch("/tracks", async (req, res) => {
-  // Código
+  if (!req.query.name) {
+    return res.status(400).send({ error: "No name provided" });
+  }
+
+  const allowedUpdates = Object.keys(req.body);
+  const actualUpdates = [
+    "id",
+    "name",
+    "start",
+    "end",
+    "long",
+    "grade",
+    "users",
+    "type",
+    "puntuation",
+
+  ];
+
+  const isValidUpdate = allowedUpdates.every((update) =>
+    actualUpdates.includes(update)
+  );
+
+  if (!isValidUpdate) {
+    return res.status(400).send({ error: "Invalid update" });
+  }
+
+  try {
+    const track = await TrackModel.findOneAndUpdate(
+      { name: req.query.name.toString() },
+      req.body,
+      { new: true,
+        runValidators: true, }
+    );
+
+    if (track) {
+      return res.send(track);
+    }
+    return res.status(404).send();
+
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+
 });
 
 trackRouter.patch("/tracks/:id", async (req, res) => {
-  // Código
+  try {
+    const track = await TrackModel.findOneAndUpdate(
+      { id: req.params.id },
+      req.body,
+      { new: true,
+        runValidators: true, }
+    );
+
+    if (track) {
+      return res.send(track);
+    }
+
+    return res.status(404).send();
+  } catch (error) {
+    return res.status(500).send(error);
+  }
 });
 
 trackRouter.delete("/tracks", async (req, res) => {

@@ -43,11 +43,64 @@ challengeRouter.get("/challenges/:id", async (req, res) => {
 });
 
 challengeRouter.patch("/challenges", async (req, res) => {
-  // Código
+  if(!req.query.name) {
+    return res.status(400).send({error: "No name provided"});
+  }
+
+  const allowedUpdates = Object.keys(req.body);
+  const actualUpdates = [
+    "id",
+    "name",
+    "tracks",
+    "type",
+    "long",
+    "users"
+  ];
+
+  const isValidOperation = actualUpdates.every((update) => {
+    allowedUpdates.includes(update);
+  });
+
+  if(!isValidOperation) {
+    return res.status(400).send({error: "Invalid updates"});
+  }
+
+  try {
+    const challenge = await ChallengeModel.findOneAndUpdate({
+      name: req.query.name.toString()
+    }, req.body, {
+      new: true,
+      runValidators: true
+    });
+
+    if(challenge) {
+      return res.send(challenge);
+    }
+
+    return res.status(404).send();
+  } catch(error) {
+    return res.status(500).send(error)
+  }
+
+
 });
 
 challengeRouter.patch("/challenges/:id", async (req, res) => {
-  // Código
+  try {
+    const challenge = await ChallengeModel.findOneAndUpdate({
+      id: req.params.id
+    }, req.body, {
+      new: true,
+      runValidators: true
+    });
+
+    if(challenge) {
+      return res.send(challenge);
+    }
+    return res.status(404).send();
+  } catch(error) {
+    return res.status(500).send()
+  }
 });
 
 challengeRouter.delete("/challenges", async (req, res) => {
