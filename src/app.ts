@@ -7,14 +7,9 @@ import { challengeRouter } from './routers/challenge.js';
 import { defaultRouter } from './routers/default.js';
 
 export const app = express();
-// const port = process.env.PORT || 3000;
 
 app.use(trackRouter);
 app.use(userRouter);
 app.use(groupRouter);
 app.use(challengeRouter);
 app.use(defaultRouter);
-
-// app.listen(port, () => {
-//     console.log(`Server is up on port ${port}`);
-// });

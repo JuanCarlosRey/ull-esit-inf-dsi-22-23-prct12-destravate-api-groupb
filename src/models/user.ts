@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
-import { User } from '../interfaces/user.js';
+import { UserDocument } from '../interfaces/user.js';
 
-const UserSchema = new Schema<User>({
+const UserSchema = new Schema<UserDocument>({
     id: {
         type: Number,
         required: true,
@@ -84,4 +84,4 @@ const UserSchema = new Schema<User>({
     }
 });
 
-export const UserModel = model<User>('User', UserSchema);
+export const UserModel = model<UserDocument>('User', UserSchema);

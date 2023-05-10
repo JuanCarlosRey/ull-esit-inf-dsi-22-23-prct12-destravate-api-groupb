@@ -1,4 +1,5 @@
 import { Type } from "./track.js";
+import { Document } from "mongoose";
 
 export type Statistics = {
     _weekly_distance: number;
@@ -19,14 +20,14 @@ export type Record = { // Historial
     _date: Date;
 }
 
-export interface User {
-  id: number;
-  name: string;
-  activity: Type;
-  friends: number[];
-  groups: number[];
-  stadicitics: Statistics;
-  favorite_tracks: number[];
-  challenges: number[];
-  history: Record;
+export interface UserDocument extends Document {
+    id: number;
+    name: string;
+    activity: Type;
+    friends: number[];
+    groups: number[];
+    stadicitics: Statistics;
+    favorite_tracks: number[];
+    challenges: number[];
+    history: Record;
 }

@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
-import { Challenge } from '../interfaces/challenge.js';
+import { ChallengeDocument } from '../interfaces/challenge.js';
 
-const ChallengeSchema = new Schema<Challenge>({
+const ChallengeSchema = new Schema<ChallengeDocument>({
     id: {
         type: Number,
         required: true,
@@ -45,4 +45,4 @@ const ChallengeSchema = new Schema<Challenge>({
     ],
 });
 
-export const ChallengeModel = model<Challenge>('Challenge', ChallengeSchema);
+export const ChallengeModel = model<ChallengeDocument>('Challenge', ChallengeSchema);

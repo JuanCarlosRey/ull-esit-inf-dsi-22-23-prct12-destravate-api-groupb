@@ -1,11 +1,11 @@
 import { Type } from "./track.js";
+import { Document } from "mongoose";
 
-export interface Challenge {
-  id: number;
-  name: string;
-  tracks: number[];
-  type: Type;
-  long: number;
-  users: string[];
-
+export interface ChallengeDocument extends Document {
+    id: number;
+    name: string;
+    tracks: number[];
+    type: Type;
+    long: number;
+    users: string[];
 }

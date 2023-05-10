@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
-import { Track } from '../interfaces/track.js';
+import { TrackDocument } from '../interfaces/track.js';
 
-const TrackSchema = new Schema<Track>({
+const TrackSchema = new Schema<TrackDocument>({
     id: {
         type: Number,
         required: true,
@@ -79,4 +79,4 @@ const TrackSchema = new Schema<Track>({
     }
 });
 
-export const TrackModel = model<Track>('Track', TrackSchema);
+export const TrackModel = model<TrackDocument>('Track', TrackSchema);

@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
-import { Group } from '../interfaces/group.js';
+import { GroupDocument } from '../interfaces/group.js';
 
-const GroupSchema = new Schema<Group>({
+const GroupSchema = new Schema<GroupDocument>({
     id: {
         type: Number,
         required: true,
@@ -73,4 +73,4 @@ const GroupSchema = new Schema<Group>({
     }
 });
 
-export const GroupModel = model<Group>('Group', GroupSchema);
+export const GroupModel = model<GroupDocument>('Group', GroupSchema);
