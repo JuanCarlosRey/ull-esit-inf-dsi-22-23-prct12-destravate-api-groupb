@@ -48,7 +48,7 @@ export interface UserDocument extends Document {
   activity: Type;
   friends: number[];
   groups: number[];
-  stadicitics: Statistics;
+  statistics: Statistics;
   favorite_tracks: number[];
   challenges: number[];
   history: Record;

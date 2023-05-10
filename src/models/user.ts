@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 import { UserDocument } from "../interfaces/user.js";
+import validator from "validator";
 
 const UserSchema = new Schema<UserDocument>({
   id: {
@@ -26,62 +27,122 @@ const UserSchema = new Schema<UserDocument>({
     {
       type: Number,
       required: true,
+      validate(value: number) {
+        if (value < 0) {
+          throw new Error("User ID must be greater than 0");
+        }
+      },
     },
   ],
   groups: [
     {
       type: Number,
       required: true,
+      validate(value: number) {
+        if (value < 0) {
+          throw new Error("Group ID must be greater than 0");
+        }
+      },
     },
   ],
-  stadicitics: {
+  statistics: {
     _weekly_distance: {
       type: Number,
       required: true,
+      validate(value: number) {
+        if (value < 0) {
+          throw new Error("Distance must be greater than 0");
+        }
+      },
     },
     _weekly_deviation: {
       type: Number,
       required: true,
+      validate(value: number) {
+        if (value < 0) {
+          throw new Error("Deviation must be greater than 0");
+        }
+      },
     },
     _monthly_distance: {
       type: Number,
       required: true,
+      validate(value: number) {
+        if (value < 0) {
+          throw new Error("Distance must be greater than 0");
+        }
+      },
     },
     _monthly_deviation: {
       type: Number,
       required: true,
+      validate(value: number) {
+        if (value < 0) {
+          throw new Error("Deviation must be greater than 0");
+        }
+      },
     },
     _annual_distance: {
       type: Number,
       required: true,
+      validate(value: number) {
+        if (value < 0) {
+          throw new Error("Distance must be greater than 0");
+        }
+      },
     },
     _annual_deviation: {
       type: Number,
       required: true,
+      validate(value: number) {
+        if (value < 0) {
+          throw new Error("Deviation must be greater than 0");
+        }
+      },
     },
   },
   favorite_tracks: [
     {
       type: Number,
       required: true,
+      validate(value: number) {
+        if (value < 0) {
+          throw new Error("Track ID must be greater than 0");
+        }
+      },
     },
   ],
   challenges: [
     {
       type: Number,
       required: true,
+      validate(value: number) {
+        if (value < 0) {
+          throw new Error("Challenge ID must be greater than 0");
+        }
+      },
     },
   ],
-  history: {
+  history: [{
     _id: {
       type: Number,
       required: true,
+      validate(value: number) {
+        if (value < 0) {
+          throw new Error("Track ID must be greater than 0");
+        }
+      }
     },
     _date: {
-      type: Number,
+      type: String,
       required: true,
+      validate(value: string) {
+        if(!validator.default.isDate(value)) {
+          throw new Error('Date is invalid');
+        }
+      }
     },
-  },
+  }]
 });
 
 export const UserModel = model<UserDocument>("User", UserSchema);
