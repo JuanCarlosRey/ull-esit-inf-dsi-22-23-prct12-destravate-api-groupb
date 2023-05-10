@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { Track } from '../classes/track.js';
+import { Track } from '../interfaces/track.js';
 
 const TrackSchema = new Schema<Track>({
     id: {

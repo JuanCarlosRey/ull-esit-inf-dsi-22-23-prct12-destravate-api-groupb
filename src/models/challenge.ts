@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { Challenge } from '../classes/challenge.js';
+import { Challenge } from '../interfaces/challenge.js';
 
 const ChallengeSchema = new Schema<Challenge>({
     id: {

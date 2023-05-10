@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { Group } from '../classes/group.js';
+import { Group } from '../interfaces/group.js';
 
 const GroupSchema = new Schema<Group>({
     id: {
