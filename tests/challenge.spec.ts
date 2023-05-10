@@ -69,14 +69,14 @@ describe('GET /challenges', () => {
 });
 
 describe('PATCH /challenges', () => {
-    it('Should update a challenge by its name', async () => {
+    it('Should update a challenges by its name', async () => {
         const response = await request(app)
-          .patch(`/challenges?name=Usuario de prueba`)
+          .patch('/challenges?name=Reto de prueba')
           .send(testChallenge2);
         expect(response.status).to.be.equal(200);
       });
 
-    it('Should update a challenge by its id', async () => {
+    it('Should update a challenges by its id', async () => {
     const response = await request(app)
         .patch(`/challenges/0`)
         .send(testChallenge);
