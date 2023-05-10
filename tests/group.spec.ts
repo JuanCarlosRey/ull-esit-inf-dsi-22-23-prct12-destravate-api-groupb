@@ -5,7 +5,7 @@ import { GroupModel } from '../src/models/group.js';
 
 const testGroup = {
     id: 0,
-    name: "Grupo de Prueba",
+    name: "Grupo de prueba",
     members: [0, 1, 2, 3],
     global_stadistics: {
         _weekly_distance: 17,
@@ -64,6 +64,20 @@ describe('POST /groups', () => {
     });
 
     it("Should get an error", async () => {
-        const response = await request(app).post('/tracks').send(testGroup).expect(500);
+        const response = await request(app).post('/groups').send(testGroup).expect(500);
+    });
+});
+
+describe('GET /groups', () => {
+    it('Should get a group by its name', async () => {
+        await request(app).get('/groups?name=Grupo de prueba').expect(200);
+    });
+
+    it('Should get a group by its id', async () => {
+        await request(app).get('/groups/0').expect(200);
+    });
+
+    it('Should get an error', async () => {
+        await request(app).get('/groups?name="Grupo inexistente"').expect(404);
     });
 });

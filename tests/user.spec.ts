@@ -68,6 +68,20 @@ describe('POST /users', () => {
     });
 
     it("Should get an error", async () => {
-        const response = await request(app).post('/tracks').send(testUser).expect(500);
+        const response = await request(app).post('/users').send(testUser).expect(500);
+    });
+});
+
+describe('GET /users', () => {
+    it('Should get a user by its name', async () => {
+        await request(app).get('/users?name=Usuario de prueba').expect(200);
+    });
+
+    it('Should get a user by its id', async () => {
+        await request(app).get('/users/0').expect(200);
+    });
+
+    it('Should get an error', async () => {
+        await request(app).get('/users?name="Usuario inexistente"').expect(404);
     });
 });

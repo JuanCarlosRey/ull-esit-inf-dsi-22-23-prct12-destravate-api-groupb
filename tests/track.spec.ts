@@ -68,3 +68,17 @@ describe('POST /tracks', () => {
         const response = await request(app).post('/tracks').send(testTrack).expect(500);
     });
 });
+
+describe('GET /tracks', () => {
+    it('Should get a track by its name', async () => {
+        await request(app).get('/tracks?name=Ruta de prueba').expect(200);
+    });
+
+    it('Should get a track by its id', async () => {
+        await request(app).get('/tracks/0').expect(200);
+    });
+
+    it('Should get an error', async () => {
+        await request(app).get('/tracks?name=Ruta inexistente').expect(404);
+    });
+});

@@ -41,6 +41,20 @@ describe('POST /challenges', () => {
     });
 
     it("Should get an error", async () => {
-        const response = await request(app).post('/tracks').send(testChallenge).expect(500);
+        const response = await request(app).post('/challenges').send(testChallenge).expect(500);
+    });
+});
+
+describe('GET /challenges', () => {
+    it('Should get a challenge by its name', async () => {
+        await request(app).get('/challenges?name=Reto de prueba').expect(200);
+    });
+
+    it('Should get a challenge by its id', async () => {
+        await request(app).get('/challenges/0').expect(200);
+    });
+
+    it('Should get an error', async () => {
+        await request(app).get('/challenges?name=Reto inexistente').expect(404);
     });
 });

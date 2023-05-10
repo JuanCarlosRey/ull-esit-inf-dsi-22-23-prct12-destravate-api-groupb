@@ -15,11 +15,31 @@ groupRouter.post("/groups", async (req, res) => {
 });
 
 groupRouter.get("/groups", async (req, res) => {
-  // Código
+  const filter = req.query.name?{name: req.query.name.toString()}:{};
+
+  try {
+    const groups = await GroupModel.findOne(filter);
+    if(groups) {
+      return res.send(groups);
+    }
+    return res.status(404).send();
+  } catch(error) {
+    return res.status(500).send(error);
+  }
 });
 
 groupRouter.get("/groups/:id", async (req, res) => {
-  // Código
+  try {
+    const groups = await GroupModel.find({
+      id: req.params.id
+    });
+    if(groups) {
+      return res.send(groups);
+    }
+    return res.status(404).send();
+  } catch(error) {
+    return res.status(500).send(error);
+  }
 });
 
 groupRouter.patch("/groups", async (req, res) => {
