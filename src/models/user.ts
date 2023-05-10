@@ -146,3 +146,33 @@ const UserSchema = new Schema<UserDocument>({
 });
 
 export const UserModel = model<UserDocument>("User", UserSchema);
+
+
+//example of a user
+// {
+//   "id": 1,
+//   "name": "John Doe",
+//   "activity": "running",
+//   "friends": [2, 3, 4],
+//   "groups": [1, 2],
+//   "statistics": {
+//     "weekly_distance": 100,
+//     "weekly_deviation": 10,
+//     "monthly_distance": 200,
+//     "monthly_deviation": 20,
+//     "annual_distance": 300,
+//     "annual_deviation": 30
+//   },
+//  "favorite_tracks": [1, 2, 3],
+//  "challenges": [1, 2, 3],
+//  "history": [
+//    {
+//      "id": 1,
+//      "date": "2021-10-10"
+//   },
+//   {
+//      "id": 2,
+//      "date": "2021-10-11"
+//   }
+//  ]
+// }
