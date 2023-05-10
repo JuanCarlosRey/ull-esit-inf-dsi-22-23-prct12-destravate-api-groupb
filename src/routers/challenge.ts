@@ -51,9 +51,32 @@ challengeRouter.patch("/challenges/:id", async (req, res) => {
 });
 
 challengeRouter.delete("/challenges", async (req, res) => {
-  // Código
+  if(!req.query.name) {
+    return res.status(400).send();
+  }
+  try {
+    const challenge = await ChallengeModel.findOneAndDelete({
+      name: req.query.name
+    });
+    if(challenge) {
+      return res.send(challenge);
+    }
+    return res.status(404).send();
+  } catch(error) {
+    return res.status(500).send(error);
+  }
 });
 
 challengeRouter.delete("/challenges/:id", async (req, res) => {
-  // Código
+  try {
+    const challenge = await ChallengeModel.findOneAndDelete({
+      id: req.params.id
+    });
+    if(challenge) {
+      return res.send(challenge);
+    }
+    return res.status(404).send();
+  } catch(error) {
+    return res.status(500).send(error);
+  }
 });

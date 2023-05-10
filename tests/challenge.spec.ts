@@ -58,3 +58,25 @@ describe('GET /challenges', () => {
         await request(app).get('/challenges?name=Reto inexistente').expect(404);
     });
 });
+
+describe('PATCH /challenges', () => {
+    // Pruebas
+});
+
+describe('DELETE /challenges', () => {
+    it('Should find and delete a challenge by its name', async () => {
+        await request(app).delete('/challenges?name=Reto de prueba').expect(200);
+    });
+
+    it('Should find and delete a challenge by its id', async () => {
+        await request(app).delete('/challenges/0').expect(200);
+    });
+
+    it('Should get an error 404', async () => {
+        await request(app).delete('/challenges/99').expect(404);
+    });
+
+    it('Should get an error 400', async () => {
+        await request(app).delete('/challenges?not_name=No es un nombre').expect(400);
+    });
+});

@@ -81,3 +81,25 @@ describe('GET /groups', () => {
         await request(app).get('/groups?name="Grupo inexistente"').expect(404);
     });
 });
+
+describe('PATCH /groups', () => {
+    // Pruebas
+});
+
+describe('DELETE /groups', () => {
+    it('Should find and delete a group by its name', async () => {
+        await request(app).delete('/groups?name=Grupo de prueba').expect(200);
+    });
+
+    it('Should find and delete a group by its id', async () => {
+        await request(app).delete('/groups/0').expect(200);
+    });
+
+    it('Should get an error 404', async () => {
+        await request(app).delete('/groups/99').expect(404);
+    }); 
+
+    it('Should get an error 400', async () => {
+        await request(app).delete('/groups?not_name=No es un nombre').expect(400);
+    }); 
+});

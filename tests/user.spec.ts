@@ -85,3 +85,25 @@ describe('GET /users', () => {
         await request(app).get('/users?name="Usuario inexistente"').expect(404);
     });
 });
+
+describe('PATCH /users', () => {
+    // Pruebas
+});
+
+describe('DELETE /users', () => {
+    it('Should find and delete a user by its name', async () => {
+        await request(app).delete('/users?name=Usuario de prueba').expect(200);
+    });
+
+    it('Should find and delete a user by its id', async () => {
+        await request(app).delete('/users/0').expect(200);
+    });
+
+    it('Should get an error 404', async () => {
+        await request(app).delete('/users/99').expect(404);
+    }); 
+
+    it('Should get an error 400', async () => {
+        await request(app).delete('/users?not_name=No es un nombre').expect(400);
+    }); 
+});

@@ -51,9 +51,32 @@ groupRouter.patch("/groups/:id", async (req, res) => {
 });
 
 groupRouter.delete("/groups", async (req, res) => {
-  // Código
+  if(!req.query.name) {
+    return res.status(400).send();
+  }
+  try {
+    const group = await GroupModel.findOneAndDelete({
+      name: req.query.name
+    });
+    if(group) {
+      return res.send(group);
+    }
+    return res.status(404).send();
+  } catch(error) {
+    return res.status(500).send(error);
+  }
 });
 
 groupRouter.delete("/groups/:id", async (req, res) => {
-  // Código
+  try {
+    const group = await GroupModel.findOneAndDelete({
+      id: req.params.id
+    });
+    if(group) {
+      return res.send(group);
+    }
+    return res.status(404).send();
+  } catch(error) {
+    return res.status(500).send(error);
+  }
 });

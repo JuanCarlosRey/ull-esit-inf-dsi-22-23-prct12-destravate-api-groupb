@@ -82,3 +82,25 @@ describe('GET /tracks', () => {
         await request(app).get('/tracks?name=Ruta inexistente').expect(404);
     });
 });
+
+describe('PATCH /tracks', () => {
+    // Pruebas
+});
+
+describe('DELETE /tracks', () => {
+    it('Should find and delete a track by its name', async () => {
+        await request(app).delete('/tracks?name=Ruta de prueba').expect(200);
+    });
+
+    it('Should find and delete a track by its id', async () => {
+        await request(app).delete('/tracks/0').expect(200);
+    });
+
+    it('Should get an error 404', async () => {
+        await request(app).delete('/tracks/99').expect(404);
+    });
+
+    it('Should get an error 400', async () => {
+        await request(app).delete('/tracks?not_name=No es un nombre').expect(400);
+    });
+});

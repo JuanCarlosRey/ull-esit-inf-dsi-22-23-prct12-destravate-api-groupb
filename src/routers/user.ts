@@ -51,9 +51,32 @@ userRouter.patch("/users/:id", async (req, res) => {
 });
 
 userRouter.delete("/users", async (req, res) => {
-  // Código
+  if(!req.query.name) {
+    return res.status(400).send();
+  }
+  try {
+    const user = await UserModel.findOneAndDelete({
+      name: req.query.name
+    });
+    if(user) {
+      return res.send(user);
+    }
+    return res.status(404).send();
+  } catch(error) {
+    return res.status(500).send(error);
+  }
 });
 
 userRouter.delete("/users/:id", async (req, res) => {
-  // Código
+  try {
+    const user = await UserModel.findOneAndDelete({
+      id: req.params.id
+    });
+    if(user) {
+      return res.send(user);
+    }
+    return res.status(404).send();
+  } catch(error) {
+    return res.status(500).send(error);
+  }
 });

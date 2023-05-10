@@ -51,9 +51,32 @@ trackRouter.patch("/tracks/:id", async (req, res) => {
 });
 
 trackRouter.delete("/tracks", async (req, res) => {
-  // Código
+  if(!req.query.name) {
+    return res.status(400).send();
+  }
+  try {
+    const track = await TrackModel.findOneAndDelete({
+      name: req.query.name
+    });
+    if(track) {
+      return res.send(track);
+    }
+    return res.status(404).send();
+  } catch(error) {
+    return res.status(500).send(error);
+  }
 });
 
 trackRouter.delete("/tracks/:id", async (req, res) => {
-  // Código
+  try {
+    const track = await TrackModel.findOneAndDelete({
+      id: req.params.id
+    });
+    if(track) {
+      return res.send(track);
+    }
+    return res.status(404).send();
+  } catch(error) {
+    return res.status(500).send(error);
+  }
 });
