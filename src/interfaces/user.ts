@@ -40,7 +40,7 @@ export class Record {
     this._id = id;
     this._date = date;
   }
-};
+}
 
 export interface UserDocument extends Document {
   id: number;

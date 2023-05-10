@@ -121,7 +121,6 @@ const TrackSchema = new Schema<TrackDocument>({
 
 export const TrackModel = model<TrackDocument>("Track", TrackSchema);
 
-
 // example of a track
 // {
 //   "id": 1,

@@ -27,6 +27,30 @@ const testGroup = {
     }]
 }
 
+const testGroup2 = {
+    id: 0,
+    name: "Grupo de prueba",
+    members: [0, 1, 2, 3],
+    global_stadistics: {
+        _weekly_distance: 172,
+        _weekly_deviation: 6.21,
+        _monthly_distance: 50,
+        _monthly_deviation: 18.18,
+        _annual_distance: 172,
+        _annual_deviation: 57.19
+    },
+    ranking: [1, 3, 2, 0],
+    favorite_tracks: [1, 2],
+    group_history: [{
+        _id: 0,
+        _date: "2021/04/14"
+    },
+    {
+        _id: 1,
+        _date: "2022/05/18"
+    }]
+}
+
 beforeEach(async () => {
     await GroupModel.deleteMany();
     await new GroupModel(testGroup).save();
@@ -83,7 +107,26 @@ describe('GET /groups', () => {
 });
 
 describe('PATCH /groups', () => {
-    // Pruebas
+    it('Should update a group by its name', async () => {
+        const response = await request(app)
+          .patch(`/groups?name=Grupo de prueba`)
+          .send(testGroup2);
+        expect(response.status).to.be.equal(200);
+      });
+
+    it('Should update a group by its id', async () => {
+    const response = await request(app)
+        .patch(`/groups/0`)
+        .send(testGroup);
+    expect(response.status).to.be.equal(200);
+    });
+
+    it('Should get an error 404', async () => {
+        const response = await request(app)
+            .patch(`/groups/99`)
+            .send(testGroup);
+        expect(response.status).to.be.equal(404);
+    });
 });
 
 describe('DELETE /groups', () => {

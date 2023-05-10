@@ -29,6 +29,32 @@ const testUser = {
     }]
 }
 
+const testUser2 = {
+    id: 0,
+    name: "Usuario de prueba 2",
+    activity: "bicicleta",
+    friends: [2, 3],
+    groups: [0],
+    statistics: {
+        _weekly_distance: 20,
+        _weekly_deviation: 800,
+        _monthly_distance: 100,
+        _monthly_deviation: 30,
+        _annual_distance: 1200,
+        _annual_deviation: 100
+    },
+    favorite_tracks: [0, 3, 9],
+    challenges: [0],
+    history: [{
+        _id: 0,
+        _date: "2021/04/14"
+    },
+    {
+        _id: 3,
+        _date: "2022/05/18"
+    }]
+}
+
 beforeEach(async () => {
     await UserModel.deleteMany();
     await new UserModel(testUser).save();
@@ -87,8 +113,27 @@ describe('GET /users', () => {
 });
 
 describe('PATCH /users', () => {
-    // Pruebas
-});
+    it('Should update a user by its name', async () => {
+        const response = await request(app)
+          .patch(`/users?name=Usuario de prueba`)
+          .send(testUser2);
+        expect(response.status).to.be.equal(200);
+      });
+
+    it('Should update a user by its id', async () => {
+    const response = await request(app)
+        .patch(`/users/0`)
+        .send(testUser);
+    expect(response.status).to.be.equal(200);
+    });
+
+    it('Should get an error 404', async () => {
+        const response = await request(app)
+            .patch(`/users/99`)
+            .send(testUser);
+        expect(response.status).to.be.equal(404);
+    });
+})
 
 describe('DELETE /users', () => {
     it('Should find and delete a user by its name', async () => {

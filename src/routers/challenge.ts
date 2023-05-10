@@ -15,15 +15,15 @@ challengeRouter.post("/challenges", async (req, res) => {
 });
 
 challengeRouter.get("/challenges", async (req, res) => {
-  const filter = req.query.name?{name: req.query.name.toString()}:{};
+  const filter = req.query.name ? { name: req.query.name.toString() } : {};
 
   try {
     const challenges = await ChallengeModel.findOne(filter);
-    if(challenges) {
+    if (challenges) {
       return res.send(challenges);
     }
     return res.status(404).send();
-  } catch(error) {
+  } catch (error) {
     return res.status(500).send(error);
   }
 });
@@ -31,91 +31,90 @@ challengeRouter.get("/challenges", async (req, res) => {
 challengeRouter.get("/challenges/:id", async (req, res) => {
   try {
     const challenges = await ChallengeModel.findOne({
-      id: req.params.id
+      id: req.params.id,
     });
-    if(challenges) {
+    if (challenges) {
       return res.send(challenges);
     }
     return res.status(404).send();
-  } catch(error) {
+  } catch (error) {
     return res.status(500).send(error);
   }
 });
 
 challengeRouter.patch("/challenges", async (req, res) => {
-  if(!req.query.name) {
-    return res.status(400).send({error: "No name provided"});
+  if (!req.query.name) {
+    return res.status(400).send({ error: "No name provided" });
   }
 
   const allowedUpdates = Object.keys(req.body);
-  const actualUpdates = [
-    "id",
-    "name",
-    "tracks",
-    "type",
-    "long",
-    "users"
-  ];
+  const actualUpdates = ["id", "name", "tracks", "type", "long", "users"];
 
   const isValidOperation = actualUpdates.every((update) => {
     allowedUpdates.includes(update);
   });
 
-  if(!isValidOperation) {
-    return res.status(400).send({error: "Invalid updates"});
+  if (!isValidOperation) {
+    return res.status(400).send({ error: "Invalid updates" });
   }
 
   try {
-    const challenge = await ChallengeModel.findOneAndUpdate({
-      name: req.query.name.toString()
-    }, req.body, {
-      new: true,
-      runValidators: true
-    });
+    const challenge = await ChallengeModel.findOneAndUpdate(
+      {
+        name: req.query.name.toString(),
+      },
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
 
-    if(challenge) {
+    if (challenge) {
       return res.send(challenge);
     }
 
     return res.status(404).send();
-  } catch(error) {
-    return res.status(500).send(error)
+  } catch (error) {
+    return res.status(500).send(error);
   }
-
-
 });
 
 challengeRouter.patch("/challenges/:id", async (req, res) => {
   try {
-    const challenge = await ChallengeModel.findOneAndUpdate({
-      id: req.params.id
-    }, req.body, {
-      new: true,
-      runValidators: true
-    });
+    const challenge = await ChallengeModel.findOneAndUpdate(
+      {
+        id: req.params.id,
+      },
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
 
-    if(challenge) {
+    if (challenge) {
       return res.send(challenge);
     }
     return res.status(404).send();
-  } catch(error) {
-    return res.status(500).send()
+  } catch (error) {
+    return res.status(500).send();
   }
 });
 
 challengeRouter.delete("/challenges", async (req, res) => {
-  if(!req.query.name) {
+  if (!req.query.name) {
     return res.status(400).send();
   }
   try {
     const challenge = await ChallengeModel.findOneAndDelete({
-      name: req.query.name
+      name: req.query.name,
     });
-    if(challenge) {
+    if (challenge) {
       return res.send(challenge);
     }
     return res.status(404).send();
-  } catch(error) {
+  } catch (error) {
     return res.status(500).send(error);
   }
 });
@@ -123,13 +122,13 @@ challengeRouter.delete("/challenges", async (req, res) => {
 challengeRouter.delete("/challenges/:id", async (req, res) => {
   try {
     const challenge = await ChallengeModel.findOneAndDelete({
-      id: req.params.id
+      id: req.params.id,
     });
-    if(challenge) {
+    if (challenge) {
       return res.send(challenge);
     }
     return res.status(404).send();
-  } catch(error) {
+  } catch (error) {
     return res.status(500).send(error);
   }
 });

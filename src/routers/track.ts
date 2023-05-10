@@ -15,15 +15,15 @@ trackRouter.post("/tracks", async (req, res) => {
 });
 
 trackRouter.get("/tracks", async (req, res) => {
-  const filter = req.query.name?{name: req.query.name.toString()}:{};
+  const filter = req.query.name ? { name: req.query.name.toString() } : {};
 
   try {
     const tracks = await TrackModel.findOne(filter);
-    if(tracks) {
+    if (tracks) {
       return res.send(tracks);
     }
     return res.status(404).send();
-  } catch(error) {
+  } catch (error) {
     return res.status(500).send(error);
   }
 });
@@ -31,13 +31,13 @@ trackRouter.get("/tracks", async (req, res) => {
 trackRouter.get("/tracks/:id", async (req, res) => {
   try {
     const tracks = await TrackModel.findOne({
-      id: req.params.id
+      id: req.params.id,
     });
-    if(tracks) {
+    if (tracks) {
       return res.send(tracks);
     }
     return res.status(404).send();
-  } catch(error) {
+  } catch (error) {
     return res.status(500).send(error);
   }
 });
@@ -58,7 +58,6 @@ trackRouter.patch("/tracks", async (req, res) => {
     "users",
     "type",
     "puntuation",
-
   ];
 
   const isValidUpdate = allowedUpdates.every((update) =>
@@ -73,19 +72,16 @@ trackRouter.patch("/tracks", async (req, res) => {
     const track = await TrackModel.findOneAndUpdate(
       { name: req.query.name.toString() },
       req.body,
-      { new: true,
-        runValidators: true, }
+      { new: true, runValidators: true }
     );
 
     if (track) {
       return res.send(track);
     }
     return res.status(404).send();
-
   } catch (error) {
     return res.status(500).send(error);
   }
-
 });
 
 trackRouter.patch("/tracks/:id", async (req, res) => {
@@ -93,8 +89,7 @@ trackRouter.patch("/tracks/:id", async (req, res) => {
     const track = await TrackModel.findOneAndUpdate(
       { id: req.params.id },
       req.body,
-      { new: true,
-        runValidators: true, }
+      { new: true, runValidators: true }
     );
 
     if (track) {
@@ -108,18 +103,18 @@ trackRouter.patch("/tracks/:id", async (req, res) => {
 });
 
 trackRouter.delete("/tracks", async (req, res) => {
-  if(!req.query.name) {
+  if (!req.query.name) {
     return res.status(400).send();
   }
   try {
     const track = await TrackModel.findOneAndDelete({
-      name: req.query.name
+      name: req.query.name,
     });
-    if(track) {
+    if (track) {
       return res.send(track);
     }
     return res.status(404).send();
-  } catch(error) {
+  } catch (error) {
     return res.status(500).send(error);
   }
 });
@@ -127,13 +122,13 @@ trackRouter.delete("/tracks", async (req, res) => {
 trackRouter.delete("/tracks/:id", async (req, res) => {
   try {
     const track = await TrackModel.findOneAndDelete({
-      id: req.params.id
+      id: req.params.id,
     });
-    if(track) {
+    if (track) {
       return res.send(track);
     }
     return res.status(404).send();
-  } catch(error) {
+  } catch (error) {
     return res.status(500).send(error);
   }
 });

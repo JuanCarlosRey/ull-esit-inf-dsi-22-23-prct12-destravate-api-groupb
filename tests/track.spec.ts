@@ -23,6 +23,26 @@ const testTrack = {
     puntuation: 4.3
 }
 
+const testTrack2 = {
+    id: 0,
+    name: "Ruta de prueba",
+    start: {
+        lat: 0,
+        long: 0,
+        alt: 0
+    },
+    end: {
+        lat: 100,
+        long: 1,
+        alt: 1
+    },
+    long: 10,
+    grade: 1.7,
+    users: [0, 1],
+    type: "correr",
+    puntuation: 4.3
+}
+
 beforeEach(async () => {
     await TrackModel.deleteMany();
     await new TrackModel(testTrack).save();
@@ -84,7 +104,26 @@ describe('GET /tracks', () => {
 });
 
 describe('PATCH /tracks', () => {
-    // Pruebas
+    it('Should update a track by its name', async () => {
+        const response = await request(app)
+          .patch(`/tracks?name=Ruta de prueba`)
+          .send(testTrack2);
+        expect(response.status).to.be.equal(200);
+      });
+
+    it('Should update a track by its id', async () => {
+    const response = await request(app)
+        .patch(`/tracks/0`)
+        .send(testTrack);
+    expect(response.status).to.be.equal(200);
+    });
+
+    it('Should get an error 404', async () => {
+        const response = await request(app)
+            .patch(`/tracks/99`)
+            .send(testTrack);
+        expect(response.status).to.be.equal(404);
+    });
 });
 
 describe('DELETE /tracks', () => {

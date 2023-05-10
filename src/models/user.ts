@@ -123,30 +123,31 @@ const UserSchema = new Schema<UserDocument>({
       },
     },
   ],
-  history: [{
-    _id: {
-      type: Number,
-      required: true,
-      validate(value: number) {
-        if (value < 0) {
-          throw new Error("Track ID must be greater than 0");
-        }
-      }
+  history: [
+    {
+      _id: {
+        type: Number,
+        required: true,
+        validate(value: number) {
+          if (value < 0) {
+            throw new Error("Track ID must be greater than 0");
+          }
+        },
+      },
+      _date: {
+        type: String,
+        required: true,
+        validate(value: string) {
+          if (!validator.default.isDate(value)) {
+            throw new Error("Date is invalid");
+          }
+        },
+      },
     },
-    _date: {
-      type: String,
-      required: true,
-      validate(value: string) {
-        if(!validator.default.isDate(value)) {
-          throw new Error('Date is invalid');
-        }
-      }
-    },
-  }]
+  ],
 });
 
 export const UserModel = model<UserDocument>("User", UserSchema);
-
 
 //example of a user
 // {

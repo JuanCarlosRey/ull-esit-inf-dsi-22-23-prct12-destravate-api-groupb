@@ -107,30 +107,31 @@ const GroupSchema = new Schema<GroupDocument>({
       },
     },
   ],
-  group_history: [{
-    _id: {
-      type: Number,
-      required: true,
-      validate(value: number) {
-        if (value < 0) {
-          throw new Error("Track ID must be greater than 0");
-        }
+  group_history: [
+    {
+      _id: {
+        type: Number,
+        required: true,
+        validate(value: number) {
+          if (value < 0) {
+            throw new Error("Track ID must be greater than 0");
+          }
+        },
+      },
+      _date: {
+        type: String,
+        required: true,
+        validate(value: string) {
+          if (!validator.default.isDate(value)) {
+            throw new Error("Date is invalid");
+          }
+        },
       },
     },
-    _date: {
-      type: String,
-      required: true,
-      validate(value: string) {
-        if(!validator.default.isDate(value)) {
-          throw new Error('Date is invalid');
-        }
-      }
-    },
-  }],
+  ],
 });
 
 export const GroupModel = model<GroupDocument>("Group", GroupSchema);
-
 
 //example of a group
 // {
