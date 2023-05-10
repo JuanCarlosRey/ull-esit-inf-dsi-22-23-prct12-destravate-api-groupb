@@ -1,14 +1,15 @@
-import { Schema, model } from "mongoose";
 import { ChallengeDocument } from "../interfaces/challenge.js";
+import { Schema } from "mongoose";
+import { Date } from "../interfaces/user.js";
 
-const ChallengeSchema = new Schema<ChallengeDocument>({
+export const ChallengeSchema = new Schema<ChallengeDocument>({
   id: {
     type: Number,
     required: true,
     unique: true,
     validate(value: number) {
       if (value < 0) {
-        throw new Error("Track ID must be greater than 0");
+        throw new Error("Challenge ID must be greater than 0");
       }
     },
   },
@@ -21,7 +22,7 @@ const ChallengeSchema = new Schema<ChallengeDocument>({
     {
       type: Number,
       required: true,
-    },
+    }
   ],
   type: {
     type: String,
@@ -33,7 +34,7 @@ const ChallengeSchema = new Schema<ChallengeDocument>({
     required: true,
     validate(value: number) {
       if (value < 0) {
-        throw new Error("Track length must be greater than 0");
+        throw new Error("Challenge long must be greater than 0");
       }
     },
   },
@@ -44,8 +45,3 @@ const ChallengeSchema = new Schema<ChallengeDocument>({
     },
   ],
 });
-
-export const ChallengeModel = model<ChallengeDocument>(
-  "Challenge",
-  ChallengeSchema
-);

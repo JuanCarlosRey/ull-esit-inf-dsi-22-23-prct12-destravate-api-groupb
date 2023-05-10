@@ -1,7 +1,7 @@
-import { Schema, model } from "mongoose";
-import { UserDocument } from "../interfaces/user.js";
+import { Schema } from "mongoose";
+import { GroupDocument } from "../interfaces/group.js";
 
-const UserSchema = new Schema<UserDocument>({
+const GroupSchema = new Schema<GroupDocument>({
   id: {
     type: Number,
     required: true,
@@ -17,24 +17,13 @@ const UserSchema = new Schema<UserDocument>({
     required: true,
     trim: true,
   },
-  activity: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  friends: [
+  members: [
     {
       type: Number,
       required: true,
     },
   ],
-  groups: [
-    {
-      type: Number,
-      required: true,
-    },
-  ],
-  stadicitics: {
+  global_stadistics: {
     _weekly_distance: {
       type: Number,
       required: true,
@@ -60,28 +49,43 @@ const UserSchema = new Schema<UserDocument>({
       required: true,
     },
   },
+  ranking: [
+    {
+      type: Number,
+      required: true,
+    },
+  ],
   favorite_tracks: [
     {
       type: Number,
       required: true,
     },
   ],
-  challenges: [
-    {
+
+  group_history: {
+    _weekly_distance: {
       type: Number,
       required: true,
     },
-  ],
-  history: {
-    _id: {
+    _weekly_deviation: {
       type: Number,
       required: true,
     },
-    _date: {
+    _monthly_distance: {
+      type: Number,
+      required: true,
+    },
+    _monthly_deviation: {
+      type: Number,
+      required: true,
+    },
+    _annual_distance: {
+      type: Number,
+      required: true,
+    },
+    _annual_deviation: {
       type: Number,
       required: true,
     },
   },
 });
-
-export const UserModel = model<UserDocument>("User", UserSchema);
