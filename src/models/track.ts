@@ -21,28 +21,58 @@ const TrackSchema = new Schema<TrackDocument>({
     lat: {
       type: Number,
       required: true,
+      validate(value: number) {
+        if (value < 0) {
+          throw new Error("Latitude must be greater than 0");
+        }
+      },
     },
     long: {
       type: Number,
       required: true,
+      validate(value: number) {
+        if (value < 0) {
+          throw new Error("Length must be greater than 0");
+        }
+      },
     },
     alt: {
       type: Number,
       required: true,
+      validate(value: number) {
+        if (value < 0) {
+          throw new Error("Altitude must be greater than 0");
+        }
+      },
     },
   },
   end: {
     lat: {
       type: Number,
       required: true,
+      validate(value: number) {
+        if (value < 0) {
+          throw new Error("Latitude must be greater than 0");
+        }
+      },
     },
     long: {
       type: Number,
       required: true,
+      validate(value: number) {
+        if (value < 0) {
+          throw new Error("Length must be greater than 0");
+        }
+      },
     },
     alt: {
       type: Number,
       required: true,
+      validate(value: number) {
+        if (value < 0) {
+          throw new Error("Altitude must be greater than 0");
+        }
+      },
     },
   },
   long: {
@@ -66,6 +96,11 @@ const TrackSchema = new Schema<TrackDocument>({
     {
       type: Number,
       required: true,
+      validate(value: number) {
+        if (value < 0) {
+          throw new Error("User ID must be greater than 0");
+        }
+      },
     },
   ],
   type: {
@@ -76,6 +111,11 @@ const TrackSchema = new Schema<TrackDocument>({
   puntuation: {
     type: Number,
     required: true,
+    validate(value: number) {
+      if (value < 0 || value > 5) {
+        throw new Error("Puntuation must be a number between 0 and 5");
+      }
+    },
   },
 });
 

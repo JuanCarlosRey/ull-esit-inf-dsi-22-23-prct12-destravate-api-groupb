@@ -21,6 +21,11 @@ const ChallengeSchema = new Schema<ChallengeDocument>({
     {
       type: Number,
       required: true,
+      validate(value: number) {
+        if (value < 0) {
+          throw new Error("Track ID must be greater than 0");
+        }
+      },
     },
   ],
   type: {
@@ -41,6 +46,11 @@ const ChallengeSchema = new Schema<ChallengeDocument>({
     {
       type: Number,
       required: true,
+      validate(value: number) {
+        if (value < 0) {
+          throw new Error("User ID must be greater than 0");
+        }
+      },
     },
   ],
 });
