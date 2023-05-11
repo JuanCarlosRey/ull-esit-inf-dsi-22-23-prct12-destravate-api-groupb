@@ -2,6 +2,7 @@ import request from 'supertest';
 import { expect } from 'chai';
 import { app } from '../src/app.js';
 import { UserModel } from '../src/models/user.js';
+import "mocha";
 
 const testUser = {
     id: 0,

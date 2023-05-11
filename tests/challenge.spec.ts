@@ -1,8 +1,9 @@
 import request from 'supertest';
-import { expect } from 'chai';
 import { app } from '../src/app.js';
 import { ChallengeModel } from '../src/models/challenge.js';
-
+import { expect } from "chai";
+import "mocha";
+    
 const testChallenge = {
     id: 0,
     name: "Reto de prueba",
@@ -14,7 +15,7 @@ const testChallenge = {
 
 const testChallenge2 = {
     id: 0,
-    name: "Reto de prueba",
+    name: "Reto de prueba 2",
     tracks: [4],
     type: "correr",
     long: 10,

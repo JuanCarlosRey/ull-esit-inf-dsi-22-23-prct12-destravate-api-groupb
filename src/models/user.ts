@@ -157,23 +157,23 @@ export const UserModel = model<UserDocument>("User", UserSchema);
 //   "friends": [2, 3, 4],
 //   "groups": [1, 2],
 //   "statistics": {
-//     "weekly_distance": 100,
-//     "weekly_deviation": 10,
-//     "monthly_distance": 200,
-//     "monthly_deviation": 20,
-//     "annual_distance": 300,
-//     "annual_deviation": 30
+//     "_weekly_distance": 100,
+//     "_weekly_deviation": 10,
+//     "_monthly_distance": 200,
+//     "_monthly_deviation": 20,
+//     "_annual_distance": 300,
+//     "_annual_deviation": 30
 //   },
 //  "favorite_tracks": [1, 2, 3],
 //  "challenges": [1, 2, 3],
 //  "history": [
 //    {
-//      "id": 1,
-//      "date": "2021-10-10"
+//      "_id": 1,
+//      "_date": "2021-10-10"
 //   },
 //   {
-//      "id": 2,
-//      "date": "2021-10-11"
+//      "_id": 2,
+//      "_date": "2021-10-11"
 //   }
 //  ]
 // }

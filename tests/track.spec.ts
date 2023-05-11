@@ -2,6 +2,7 @@ import request from 'supertest';
 import { expect } from 'chai';
 import { app } from '../src/app.js';
 import { TrackModel } from '../src/models/track.js';
+import "mocha";
 
 const testTrack = {
     id: 0,
