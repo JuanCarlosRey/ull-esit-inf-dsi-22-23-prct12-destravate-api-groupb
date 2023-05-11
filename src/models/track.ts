@@ -1,6 +1,10 @@
 import { Schema, model } from "mongoose";
 import { TrackDocument } from "../interfaces/track.js";
 
+/**
+ * Esquema de Mongoose para una pista
+ */
+
 const TrackSchema = new Schema<TrackDocument>({
   id: {
     type: Number,
