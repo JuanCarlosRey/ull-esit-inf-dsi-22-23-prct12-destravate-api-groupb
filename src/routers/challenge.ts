@@ -48,11 +48,18 @@ challengeRouter.patch("/challenges", async (req, res) => {
   }
 
   const allowedUpdates = Object.keys(req.body);
-  const actualUpdates = ["id", "name", "tracks", "type", "long", "users"];
+  const actualUpdates = [
+    "id",
+    "name",
+    "tracks",
+    "type",
+    "long",
+    "users"
+  ];
 
-  const isValidOperation = actualUpdates.every((update) => {
-    allowedUpdates.includes(update);
-  });
+  const isValidOperation = actualUpdates.every((update) =>
+    allowedUpdates.includes(update)
+  );
 
   if (!isValidOperation) {
     return res.status(400).send({ error: "Invalid updates" });
@@ -73,7 +80,6 @@ challengeRouter.patch("/challenges", async (req, res) => {
     if (challenge) {
       return res.send(challenge);
     }
-
     return res.status(404).send();
   } catch (error) {
     return res.status(500).send(error);
