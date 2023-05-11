@@ -86,7 +86,6 @@ export const ChallengeModel = model<ChallengeDocument>(
   ChallengeSchema
 );
 
-
 //example of a challenge
 // {
 //   "id": 1,

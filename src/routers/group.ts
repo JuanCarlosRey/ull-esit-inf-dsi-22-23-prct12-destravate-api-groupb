@@ -1,4 +1,3 @@
-
 /**
 
 Module for handling routes related to groups

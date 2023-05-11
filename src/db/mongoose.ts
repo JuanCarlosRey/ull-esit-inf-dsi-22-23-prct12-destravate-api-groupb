@@ -15,4 +15,3 @@ try {
 } catch (error) {
   console.log("Unable to connect to MongoDB server");
 }
-

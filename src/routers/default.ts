@@ -1,5 +1,5 @@
-/** 
- * @fileoverview Define el enrutador por defecto que maneja todas las peticiones no encontradas 
+/**
+ * @fileoverview Define el enrutador por defecto que maneja todas las peticiones no encontradas
  * @module DefaultRouter
  */
 

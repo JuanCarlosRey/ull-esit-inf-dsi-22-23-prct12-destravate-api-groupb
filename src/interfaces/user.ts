@@ -144,4 +144,3 @@ export interface UserDocument extends Document {
    */
   history: Record;
 }
-
