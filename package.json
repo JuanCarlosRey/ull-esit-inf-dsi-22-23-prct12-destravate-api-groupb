@@ -7,9 +7,9 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "dev": "tsc-watch --onSuccess \"node dist/main.js\"",
+    "dev": "tsc-watch --onSuccess \"env-cmd -f ./config/dev.env node dist/index.js\"",
     "doc": "typedoc",
-    "test": "mocha --exit",
+    "test": "env-cmd -f ./config/test.env mocha --exit",
     "coverage": "c8 npm test && c8 report --reporter=lcov"
   },
   "keywords": [],
@@ -29,6 +29,7 @@
     "c8": "^7.13.0",
     "chai": "^4.3.7",
     "coveralls": "^3.1.1",
+    "env-cmd": "^10.1.0",
     "eslint": "^8.33.0",
     "eslint-config-prettier": "^8.8.0",
     "mocha": "^10.2.0",
