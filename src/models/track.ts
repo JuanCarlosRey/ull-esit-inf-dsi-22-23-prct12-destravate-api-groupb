@@ -6,6 +6,9 @@ import { TrackDocument } from "../interfaces/track.js";
  */
 
 const TrackSchema = new Schema<TrackDocument>({
+  /**
+   * El ID de la pista.
+   */
   id: {
     type: Number,
     required: true,
@@ -16,11 +19,17 @@ const TrackSchema = new Schema<TrackDocument>({
       }
     },
   },
+  /**
+   * Nombre de la pista.
+   */
   name: {
     type: String,
     required: true,
     trim: true,
   },
+  /**
+   * Inicio de la pista
+   */
   start: {
     lat: {
       type: Number,
@@ -50,6 +59,9 @@ const TrackSchema = new Schema<TrackDocument>({
       },
     },
   },
+  /**
+   * Final de la pista.
+   */
   end: {
     lat: {
       type: Number,
@@ -79,6 +91,9 @@ const TrackSchema = new Schema<TrackDocument>({
       },
     },
   },
+  /**
+   * Longitud de la pista en metros.
+   */
   long: {
     type: Number,
     validate(value: number) {
@@ -87,6 +102,9 @@ const TrackSchema = new Schema<TrackDocument>({
       }
     },
   },
+  /**
+   * Desviación de la pista en grados.
+   */
   grade: {
     type: Number,
     required: true,
@@ -96,6 +114,9 @@ const TrackSchema = new Schema<TrackDocument>({
       }
     },
   },
+  /**
+   * Usuarios que han completado la pista.
+   */
   users: [
     {
       type: Number,
@@ -107,11 +128,17 @@ const TrackSchema = new Schema<TrackDocument>({
       },
     },
   ],
+  /**
+   * Tipo de pista.
+   */
   type: {
     type: String,
     required: true,
     trim: true,
   },
+  /**
+   * Puntuación de la pista.
+   */
   puntuation: {
     type: Number,
     required: true,

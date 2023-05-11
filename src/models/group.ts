@@ -2,7 +2,13 @@ import { Schema, model } from "mongoose";
 import { GroupDocument } from "../interfaces/group.js";
 import validator from "validator";
 
+/**
+ * Group schema
+ */
 const GroupSchema = new Schema<GroupDocument>({
+  /**
+   * El ID del grupo.
+   */
   id: {
     type: Number,
     required: true,
@@ -13,11 +19,17 @@ const GroupSchema = new Schema<GroupDocument>({
       }
     },
   },
+  /**
+   * Nombre del grupo.
+   */
   name: {
     type: String,
     required: true,
     trim: true,
   },
+  /**
+   * Miembros del grupo.
+   */
   members: [
     {
       type: Number,
@@ -29,6 +41,9 @@ const GroupSchema = new Schema<GroupDocument>({
       },
     },
   ],
+  /**
+   * Estadísticas globales del grupo.
+   */
   global_stadistics: {
     _weekly_distance: {
       type: Number,
@@ -85,6 +100,9 @@ const GroupSchema = new Schema<GroupDocument>({
       },
     },
   },
+  /**
+   * Ranking del grupo en funcion de los km o el desnivel.
+   */
   ranking: [
     {
       type: Number,
@@ -96,6 +114,9 @@ const GroupSchema = new Schema<GroupDocument>({
       },
     },
   ],
+  /**
+   * Historial de retos del grupo.
+   */
   favorite_tracks: [
     {
       type: Number,
@@ -107,6 +128,9 @@ const GroupSchema = new Schema<GroupDocument>({
       },
     },
   ],
+  /**
+   * Historial de retos del grupo.
+   */
   group_history: [
     {
       _id: {

@@ -1,8 +1,13 @@
 import express from "express";
 import { GroupModel } from "../models/group.js";
-
+/**
+ *  constante que exporta un enrutador de Express para manejar solicitudes HTTP en una aplicación web.
+ */
 export const groupRouter = express.Router();
 
+/**
+ * metodo para crear un nuevo grupo en la base de datos.
+ */
 groupRouter.post("/groups", async (req, res) => {
   const group = new GroupModel(req.body);
 
@@ -14,6 +19,9 @@ groupRouter.post("/groups", async (req, res) => {
   }
 });
 
+/**
+ * metodo para obtener un grupo de la base de datos mediante su nombre
+ */
 groupRouter.get("/groups", async (req, res) => {
   const filter = req.query.name ? { name: req.query.name.toString() } : {};
 
@@ -28,6 +36,9 @@ groupRouter.get("/groups", async (req, res) => {
   }
 });
 
+/**
+ * metodo para obtener un grupo de la base de datos mediante su id.
+ */
 groupRouter.get("/groups/:id", async (req, res) => {
   try {
     const groups = await GroupModel.find({
@@ -42,6 +53,9 @@ groupRouter.get("/groups/:id", async (req, res) => {
   }
 });
 
+/**
+ * metodo para actualizar un grupo de la base de datos mediante su nombre.
+ */
 groupRouter.patch("/groups", async (req, res) => {
   if (!req.query.name) {
     return res.status(400).send({ error: "No name provided" });
@@ -82,6 +96,9 @@ groupRouter.patch("/groups", async (req, res) => {
   }
 });
 
+/**
+ * metodo para actualizar un grupo de la base de datos mediante su id.
+ */
 groupRouter.patch("/groups/:id", async (req, res) => {
   try {
     const group = await GroupModel.findOneAndUpdate(
@@ -99,6 +116,9 @@ groupRouter.patch("/groups/:id", async (req, res) => {
   }
 });
 
+/**
+ * metodo para eliminar un grupo de la base de datos mediante su nombre.
+ */
 groupRouter.delete("/groups", async (req, res) => {
   if (!req.query.name) {
     return res.status(400).send();
@@ -116,6 +136,9 @@ groupRouter.delete("/groups", async (req, res) => {
   }
 });
 
+/**
+ * metodo para eliminar un grupo de la base de datos mediante su id.
+ */
 groupRouter.delete("/groups/:id", async (req, res) => {
   try {
     const group = await GroupModel.findOneAndDelete({

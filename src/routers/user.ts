@@ -2,8 +2,14 @@
 import express from "express";
 import { UserModel } from "../models/user.js";
 
+/**
+ * constante que exporta un enrutador de Express para manejar solicitudes HTTP en una aplicación web.
+ */
 export const userRouter = express.Router();
 
+/**
+ * metodo para crear un nuevo usuario en la base de datos.
+ */
 userRouter.post("/users", async (req, res) => {
   const user = new UserModel(req.body);
 
@@ -15,6 +21,9 @@ userRouter.post("/users", async (req, res) => {
   }
 });
 
+/**
+ * metodo para obtener un usuario de la base de datos mediante su nombre
+ */
 userRouter.get("/users", async (req, res) => {
   const filter = req.query.name ? { name: req.query.name.toString() } : {};
 
@@ -29,6 +38,9 @@ userRouter.get("/users", async (req, res) => {
   }
 });
 
+/**
+ * metodo para obtener un usuario de la base de datos mediante su id.
+ */
 userRouter.get("/users/:id", async (req, res) => {
   try {
     const users = await UserModel.findOne({
@@ -43,6 +55,9 @@ userRouter.get("/users/:id", async (req, res) => {
   }
 });
 
+/**
+ * metodo para actualizar un usuario de la base de datos mediante su nombre.
+ */
 userRouter.patch("/users", async (req, res) => {
   if (!req.query.name) {
     return res.status(400).send({ error: "No name provided" });
@@ -90,6 +105,9 @@ userRouter.patch("/users", async (req, res) => {
   }
 });
 
+/**
+ * metodo para actualizar un usuario de la base de datos mediante su id.
+ */
 userRouter.patch("/users/:id", async (req, res) => {
   try {
     const user = await UserModel.findOneAndUpdate(
@@ -112,6 +130,9 @@ userRouter.patch("/users/:id", async (req, res) => {
   }
 });
 
+/**
+ * metodo para eliminar un usuario de la base de datos mediante su nombre.
+ */
 userRouter.delete("/users", async (req, res) => {
   if (!req.query.name) {
     return res.status(400).send();
@@ -129,6 +150,9 @@ userRouter.delete("/users", async (req, res) => {
   }
 });
 
+/**
+ * metodo para eliminar un usuario de la base de datos mediante su id.
+ */
 userRouter.delete("/users/:id", async (req, res) => {
   try {
     const user = await UserModel.findOneAndDelete({

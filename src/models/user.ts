@@ -3,6 +3,9 @@ import { UserDocument } from "../interfaces/user.js";
 import validator from "validator";
 
 const UserSchema = new Schema<UserDocument>({
+  /**
+   * El ID del usuario.
+   */
   id: {
     type: Number,
     required: true,
@@ -13,16 +16,25 @@ const UserSchema = new Schema<UserDocument>({
       }
     },
   },
+  /**
+   * El nombre del usuario.
+   */
   name: {
     type: String,
     required: true,
     trim: true,
   },
+  /**
+   * tipo de actividad que realiza el usuario.
+   */
   activity: {
     type: String,
     required: true,
     trim: true,
   },
+  /**
+   * Id de los amigos del usuario.
+   */
   friends: [
     {
       type: Number,
@@ -34,6 +46,9 @@ const UserSchema = new Schema<UserDocument>({
       },
     },
   ],
+  /**
+   * Id de los grupos del usuario.
+   */
   groups: [
     {
       type: Number,
@@ -45,6 +60,9 @@ const UserSchema = new Schema<UserDocument>({
       },
     },
   ],
+  /**
+   * Estadísticas del usuario.
+   */
   statistics: {
     _weekly_distance: {
       type: Number,
@@ -101,6 +119,9 @@ const UserSchema = new Schema<UserDocument>({
       },
     },
   },
+  /**
+   * Tracks favoritos del usuario.
+   */
   favorite_tracks: [
     {
       type: Number,
@@ -112,6 +133,9 @@ const UserSchema = new Schema<UserDocument>({
       },
     },
   ],
+  /**
+   * Retos completados por el usuario.
+   */
   challenges: [
     {
       type: Number,
@@ -123,6 +147,9 @@ const UserSchema = new Schema<UserDocument>({
       },
     },
   ],
+  /**
+   * Historial de tracks completados por el usuario.
+   */
   history: [
     {
       _id: {

@@ -1,7 +1,13 @@
 import { Schema, model } from "mongoose";
 import { ChallengeDocument } from "../interfaces/challenge.js";
 
+/**
+ * Challenge schema
+ */
 const ChallengeSchema = new Schema<ChallengeDocument>({
+  /**
+   * El ID del reto.
+   */
   id: {
     type: Number,
     required: true,
@@ -12,11 +18,17 @@ const ChallengeSchema = new Schema<ChallengeDocument>({
       }
     },
   },
+  /**
+   * Nombre del reto.
+   */
   name: {
     type: String,
     required: true,
     trim: true,
   },
+  /**
+   * Descripción del reto.
+   */
   tracks: [
     {
       type: Number,
@@ -28,11 +40,17 @@ const ChallengeSchema = new Schema<ChallengeDocument>({
       },
     },
   ],
+  /**
+   * Tipo de reto.
+   */
   type: {
     type: String,
     required: true,
     trim: true,
   },
+  /**
+   * Longitud del reto en metros.
+   */
   long: {
     type: Number,
     required: true,
@@ -42,6 +60,9 @@ const ChallengeSchema = new Schema<ChallengeDocument>({
       }
     },
   },
+  /**
+   * Usuarios que han completado el reto.
+   */
   users: [
     {
       type: Number,

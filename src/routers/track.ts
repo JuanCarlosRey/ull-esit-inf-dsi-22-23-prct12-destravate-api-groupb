@@ -1,8 +1,14 @@
 import express from "express";
 import { TrackModel } from "../models/track.js";
 
+/**
+ * constante que exporta un enrutador de Express para manejar solicitudes HTTP en una aplicación web.
+ */
 export const trackRouter = express.Router();
 
+/**
+ * metodo para crear una nueva ruta en la base de datos.
+ */
 trackRouter.post("/tracks", async (req, res) => {
   const track = new TrackModel(req.body);
 
@@ -14,6 +20,9 @@ trackRouter.post("/tracks", async (req, res) => {
   }
 });
 
+/**
+ * metodo para obtener una ruta de la base de datos mediante su nombre
+ */
 trackRouter.get("/tracks", async (req, res) => {
   const filter = req.query.name ? { name: req.query.name.toString() } : {};
 
@@ -28,6 +37,9 @@ trackRouter.get("/tracks", async (req, res) => {
   }
 });
 
+/**
+ * metodo para obtener una ruta de la base de datos mediante su id.
+ */
 trackRouter.get("/tracks/:id", async (req, res) => {
   try {
     const tracks = await TrackModel.findOne({
@@ -42,6 +54,9 @@ trackRouter.get("/tracks/:id", async (req, res) => {
   }
 });
 
+/**
+ * metodo para actualizar una ruta de la base de datos mediante su nombre.
+ */
 trackRouter.patch("/tracks", async (req, res) => {
   if (!req.query.name) {
     return res.status(400).send({ error: "No name provided" });
@@ -84,6 +99,9 @@ trackRouter.patch("/tracks", async (req, res) => {
   }
 });
 
+/**
+ * metodo para actualizar una ruta de la base de datos mediante su id.
+ */
 trackRouter.patch("/tracks/:id", async (req, res) => {
   try {
     const track = await TrackModel.findOneAndUpdate(
@@ -102,6 +120,9 @@ trackRouter.patch("/tracks/:id", async (req, res) => {
   }
 });
 
+/**
+ * metodo para eliminar una ruta de la base de datos mediante su nombre.
+ */
 trackRouter.delete("/tracks", async (req, res) => {
   if (!req.query.name) {
     return res.status(400).send();
@@ -119,6 +140,9 @@ trackRouter.delete("/tracks", async (req, res) => {
   }
 });
 
+/**
+ * metodo para eliminar una ruta de la base de datos mediante su id.
+ */
 trackRouter.delete("/tracks/:id", async (req, res) => {
   try {
     const track = await TrackModel.findOneAndDelete({
